@@ -12,6 +12,7 @@
 		8417B5ED1E70041B00321CA7 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8417B5EB1E70041B00321CA7 /* Main.storyboard */; };
 		8417B5EF1E70041B00321CA7 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8417B5EE1E70041B00321CA7 /* Assets.xcassets */; };
 		8417B5F21E70041B00321CA7 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8417B5F01E70041B00321CA7 /* LaunchScreen.storyboard */; };
+		8417B5FB1E7006F200321CA7 /* LoginController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8417B5FA1E7006F200321CA7 /* LoginController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -22,6 +23,7 @@
 		8417B5EE1E70041B00321CA7 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		8417B5F11E70041B00321CA7 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		8417B5F31E70041B00321CA7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		8417B5FA1E7006F200321CA7 /* LoginController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -54,14 +56,23 @@
 		8417B5E61E70041B00321CA7 /* Chatster */ = {
 			isa = PBXGroup;
 			children = (
+				8417B5F91E7006D900321CA7 /* Controller */,
 				8417B5E71E70041B00321CA7 /* AppDelegate.swift */,
-				8417B5E91E70041B00321CA7 /* ViewController.swift */,
 				8417B5EB1E70041B00321CA7 /* Main.storyboard */,
 				8417B5EE1E70041B00321CA7 /* Assets.xcassets */,
 				8417B5F01E70041B00321CA7 /* LaunchScreen.storyboard */,
 				8417B5F31E70041B00321CA7 /* Info.plist */,
 			);
 			path = Chatster;
+			sourceTree = "<group>";
+		};
+		8417B5F91E7006D900321CA7 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				8417B5FA1E7006F200321CA7 /* LoginController.swift */,
+				8417B5E91E70041B00321CA7 /* ViewController.swift */,
+			);
+			name = Controller;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -138,6 +149,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				8417B5EA1E70041B00321CA7 /* ViewController.swift in Sources */,
+				8417B5FB1E7006F200321CA7 /* LoginController.swift in Sources */,
 				8417B5E81E70041B00321CA7 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -261,6 +273,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = FWHF624C4H;
 				INFOPLIST_FILE = Chatster/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.rusel95.Chatster;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -274,6 +287,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = FWHF624C4H;
 				INFOPLIST_FILE = Chatster/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.rusel95.Chatster;
 				PRODUCT_NAME = "$(TARGET_NAME)";

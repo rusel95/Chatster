@@ -16,6 +16,7 @@
 		8417B5FD1E70541E00321CA7 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 8417B5FC1E70541E00321CA7 /* GoogleService-Info.plist */; };
 		84FEAE231E72E48800A5929F /* NewMessageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84FEAE221E72E48800A5929F /* NewMessageViewController.swift */; };
 		84FEAE261E72EA9200A5929F /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84FEAE251E72EA9200A5929F /* User.swift */; };
+		84FEAE281E72F87000A5929F /* LoginController+handlers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84FEAE271E72F87000A5929F /* LoginController+handlers.swift */; };
 		A8F977B90F48578767778CAA /* Pods_Chatster.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 103A2C2A5226C0975F4AACE8 /* Pods_Chatster.framework */; };
 /* End PBXBuildFile section */
 
@@ -34,6 +35,7 @@
 		8417B5FC1E70541E00321CA7 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		84FEAE221E72E48800A5929F /* NewMessageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewMessageViewController.swift; sourceTree = "<group>"; };
 		84FEAE251E72EA9200A5929F /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		84FEAE271E72F87000A5929F /* LoginController+handlers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "LoginController+handlers.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -93,6 +95,7 @@
 			isa = PBXGroup;
 			children = (
 				8417B5FA1E7006F200321CA7 /* LoginController.swift */,
+				84FEAE271E72F87000A5929F /* LoginController+handlers.swift */,
 				8417B5E91E70041B00321CA7 /* MessagesController.swift */,
 				84FEAE221E72E48800A5929F /* NewMessageViewController.swift */,
 			);
@@ -243,6 +246,7 @@
 			files = (
 				8417B5EA1E70041B00321CA7 /* MessagesController.swift in Sources */,
 				8417B5FB1E7006F200321CA7 /* LoginController.swift in Sources */,
+				84FEAE281E72F87000A5929F /* LoginController+handlers.swift in Sources */,
 				8417B5E81E70041B00321CA7 /* AppDelegate.swift in Sources */,
 				84FEAE261E72EA9200A5929F /* User.swift in Sources */,
 				84FEAE231E72E48800A5929F /* NewMessageViewController.swift in Sources */,

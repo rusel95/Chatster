@@ -14,6 +14,7 @@
 		8417B5F21E70041B00321CA7 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8417B5F01E70041B00321CA7 /* LaunchScreen.storyboard */; };
 		8417B5FB1E7006F200321CA7 /* LoginController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8417B5FA1E7006F200321CA7 /* LoginController.swift */; };
 		8417B5FD1E70541E00321CA7 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 8417B5FC1E70541E00321CA7 /* GoogleService-Info.plist */; };
+		84EED9991E73E6B200C69A1E /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84EED9981E73E6B200C69A1E /* Extensions.swift */; };
 		84FEAE231E72E48800A5929F /* NewMessageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84FEAE221E72E48800A5929F /* NewMessageViewController.swift */; };
 		84FEAE261E72EA9200A5929F /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84FEAE251E72EA9200A5929F /* User.swift */; };
 		84FEAE281E72F87000A5929F /* LoginController+handlers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84FEAE271E72F87000A5929F /* LoginController+handlers.swift */; };
@@ -33,6 +34,7 @@
 		8417B5F31E70041B00321CA7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		8417B5FA1E7006F200321CA7 /* LoginController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginController.swift; sourceTree = "<group>"; };
 		8417B5FC1E70541E00321CA7 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		84EED9981E73E6B200C69A1E /* Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		84FEAE221E72E48800A5929F /* NewMessageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewMessageViewController.swift; sourceTree = "<group>"; };
 		84FEAE251E72EA9200A5929F /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		84FEAE271E72F87000A5929F /* LoginController+handlers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "LoginController+handlers.swift"; sourceTree = "<group>"; };
@@ -79,6 +81,7 @@
 		8417B5E61E70041B00321CA7 /* Chatster */ = {
 			isa = PBXGroup;
 			children = (
+				84EED9971E73E6A100C69A1E /* Helpers */,
 				84FEAE241E72EA5F00A5929F /* Model */,
 				8417B5F91E7006D900321CA7 /* Controller */,
 				8417B5E71E70041B00321CA7 /* AppDelegate.swift */,
@@ -100,6 +103,14 @@
 				84FEAE221E72E48800A5929F /* NewMessageViewController.swift */,
 			);
 			name = Controller;
+			sourceTree = "<group>";
+		};
+		84EED9971E73E6A100C69A1E /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				84EED9981E73E6B200C69A1E /* Extensions.swift */,
+			);
+			name = Helpers;
 			sourceTree = "<group>";
 		};
 		84FEAE241E72EA5F00A5929F /* Model */ = {
@@ -250,6 +261,7 @@
 				8417B5E81E70041B00321CA7 /* AppDelegate.swift in Sources */,
 				84FEAE261E72EA9200A5929F /* User.swift in Sources */,
 				84FEAE231E72E48800A5929F /* NewMessageViewController.swift in Sources */,
+				84EED9991E73E6B200C69A1E /* Extensions.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

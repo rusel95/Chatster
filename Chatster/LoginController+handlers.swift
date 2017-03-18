@@ -63,7 +63,11 @@ extension LoginController: UIImagePickerControllerDelegate, UINavigationControll
                 print("Error while Login: ", error!)
                 return
             }
+            
             //successfullt logged in our user
+            
+            self.messagesController?.fetchUserAndSetupNavBarTitle()
+            
             self.dismiss(animated: true, completion: nil)
         })
     }
@@ -87,9 +91,11 @@ extension LoginController: UIImagePickerControllerDelegate, UINavigationControll
             //uniqueName
             let uniqueImageName = NSUUID().uuidString
             
-            let storageRef = FIRStorage.storage().reference().child("usersProfileImage").child(uniqueImageName)
+            let storageRef = FIRStorage.storage().reference().child("usersProfileImage").child(
+                ("\(uniqueImageName).jpg") )
             
-            if let uploadData = UIImagePNGRepresentation(self.profileImageView.image!) {
+            if let profileImage = self.profileImageView.image, let uploadData = UIImageJPEGRepresentation(profileImage, 0.02) {
+            
                 storageRef.put(uploadData, metadata: nil, completion: { (metadata, error) in
                     
                     if error != nil {
@@ -115,10 +121,15 @@ extension LoginController: UIImagePickerControllerDelegate, UINavigationControll
         let usersReference = ref.child("users").child(withUId)
 
         usersReference.updateChildValues(values, withCompletionBlock: { (err, ref) in
+            
             if err != nil {
                 print(err!)
                 return
             }
+            
+            let user = User()
+            user.setValuesForKeys(values)
+            self.messagesController?.setupNavBarWithUser(user: user)
             
             self.dismiss(animated: true, completion: nil)
             

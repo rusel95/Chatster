@@ -83,7 +83,7 @@ class UserCell: UITableViewCell {
         let imageView = UIImageView()
         imageView.image = UIImage(named: "nedstark")
         imageView.layer.cornerRadius = 25
-        imageView.contentMode = .scaleAspectFit
+        imageView.contentMode = .scaleAspectFill
         imageView.layer.borderWidth = 3
         imageView.layer.borderColor = UIColor.darkGray.cgColor
         imageView.layer.masksToBounds = true

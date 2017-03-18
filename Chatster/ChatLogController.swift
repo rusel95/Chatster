@@ -7,8 +7,18 @@
 //
 
 import UIKit
+import Firebase
 
-class ChatLogController: UICollectionViewController {
+class ChatLogController: UICollectionViewController, UITextFieldDelegate {
+    
+    lazy var inputTextField: UITextField = {
+        let textField = UITextField()
+        textField.placeholder = "Enter message..."
+        textField.translatesAutoresizingMaskIntoConstraints = false
+        textField.delegate = self
+        return textField
+    }()
+    
     override func viewDidLoad(){
         super.viewDidLoad()
         
@@ -18,9 +28,7 @@ class ChatLogController: UICollectionViewController {
         
         setupInputComponents()
     }
-    
-    
-    
+ 
     func setupInputComponents() {
         
         //1. container
@@ -39,6 +47,7 @@ class ChatLogController: UICollectionViewController {
         let sendButton = UIButton(type: .system)
         sendButton.setTitle("Send", for: .normal)
         sendButton.translatesAutoresizingMaskIntoConstraints = false
+        sendButton.addTarget(self, action: #selector(handleSend), for: .touchUpInside)
        
         containerView.addSubview(sendButton)
         
@@ -48,10 +57,6 @@ class ChatLogController: UICollectionViewController {
         sendButton.heightAnchor.constraint(equalTo: containerView.heightAnchor).isActive = true
         
         //3. inputTextField
-        let inputTextField = UITextField()
-        inputTextField.placeholder = "Enter message..."
-        inputTextField.translatesAutoresizingMaskIntoConstraints = false
-        
         containerView.addSubview(inputTextField)
         
         inputTextField.leftAnchor.constraint(equalTo: containerView.leftAnchor, constant: 8).isActive = true
@@ -73,5 +78,20 @@ class ChatLogController: UICollectionViewController {
         
     }
     
+    func handleSend() {
+    
+        let ref = FIRDatabase.database().reference().child("messages")
+        let childRef = ref.childByAutoId()
+        let values = ["text": inputTextField.text]
+        childRef.updateChildValues(values)
+        
+        inputTextField.text?.removeAll()
+    }
+    
+    //for enter button in simulator
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        handleSend()
+        return true
+    }
     
 }

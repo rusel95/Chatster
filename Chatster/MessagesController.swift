@@ -52,24 +52,16 @@ class MessagesController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "cellId", for: indexPath)
+        let cell = tableView.dequeueReusableCell(withIdentifier: "cellId", for: indexPath) as! UserCell
         
         let message = messages[indexPath.row]
-        
-        if let toId = message.toId {
-            let ref = FIRDatabase.database().reference().child("users").child(toId)
-            ref.observe(.value, with: { (snapshot) in
-                
-                if let dictionary = snapshot.value as? [String: AnyObject] {
-                    cell.textLabel?.text = dictionary["name"] as! String?
-                }
-                
-            }, withCancel: nil)
-        }
-        
-        cell.detailTextLabel?.text = message.text
+        cell.message = message
         
         return cell
+    }
+    
+    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 72
     }
     
     func checkIfUserIsLoggedIn() {

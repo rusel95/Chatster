@@ -22,38 +22,51 @@ class MessagesController: UITableViewController {
         checkIfUserIsLoggedIn()
         
         tableView.register(UserCell.self, forCellReuseIdentifier: "cellId")
-        
-        observeMassages()
+
     }
     
     var messages = [Message]()
     var messagesDictionary = [String: Message]()
     
-    func observeMassages() {
-        let ref = FIRDatabase.database().reference().child("messages")
+    func observeUserMessages() {
+        //to get id of current user
+        guard let uid = FIRAuth.auth()?.currentUser?.uid else {
+            return
+        }
+        
+        //observe all messages
+        let ref = FIRDatabase.database().reference().child("user-messages").child(uid)
         ref.observe(.childAdded, with: { (snapshot) in
             
-            if let dictionary = snapshot.value as? [String: AnyObject] {
-                let message = Message()
-                message.setValuesForKeys(dictionary)
-                self.messages.append(message)
+            let messageId = snapshot.key
+            let messagesReferense = FIRDatabase.database().reference().child("messages").child(messageId)
+            
+            messagesReferense.observeSingleEvent(of: .value, with: { (snapshot) in
                 
-                if let toId = message.toId {
-                    self.messagesDictionary[toId] = message
+                if let dictionary = snapshot.value as? [String: AnyObject] {
+                    let message = Message()
+                    message.setValuesForKeys(dictionary)
+                    self.messages.append(message)
                     
-                    self.messages = Array(self.messagesDictionary.values)
-                    self.messages.sort(by: { (message1, message2) -> Bool in
-                        return (message1.timestamp?.intValue)! > (message2.timestamp?.intValue)!
-                    })
+                    if let toId = message.toId {
+                        self.messagesDictionary[toId] = message
+                        
+                        self.messages = Array(self.messagesDictionary.values)
+                        self.messages.sort(by: { (message1, message2) -> Bool in
+                            return (message1.timestamp?.intValue)! > (message2.timestamp?.intValue)!
+                        })
+                    }
+                    
+                    DispatchQueue.main.async {
+                        self.tableView.reloadData()
+                    }
+                    
                 }
                 
-                DispatchQueue.main.async {
-                    self.tableView.reloadData()
-                }
-                
-            }
+            }, withCancel: nil)
             
         }, withCancel: nil)
+        
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -106,6 +119,13 @@ class MessagesController: UITableViewController {
     }
     
     func setupNavBarWithUser(user: User) {
+        
+        messages.removeAll()
+        messagesDictionary.removeAll()
+        tableView.reloadData()
+        
+        observeUserMessages()
+        
         let titleView = UIView()
         titleView.frame = CGRect(x: 0, y: 0, width: self.view.bounds.width * 0.7, height: 40)
         

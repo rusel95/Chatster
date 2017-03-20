@@ -13,21 +13,8 @@ class UserCell: UITableViewCell {
     
     var message: Message? {
         didSet {
-            if let toId = message?.toId {
-                let ref = FIRDatabase.database().reference().child("users").child(toId)
-                ref.observe(.value, with: { (snapshot) in
-                    
-                    if let dictionary = snapshot.value as? [String: AnyObject] {
-                        
-                        self.textLabel?.text = dictionary["name"] as! String?
-                        
-                        if let profileImageUrl = dictionary["profileImageUrl"] as? String {
-                            self.profileImageView.loadImageUsingCache(withUrlString: profileImageUrl)
-                        }
-                    }
-                    
-                }, withCancel: nil)
-            }
+            
+            setupNameAndAvatar()
             
             detailTextLabel?.text = message?.text
             
@@ -48,6 +35,33 @@ class UserCell: UITableViewCell {
         detailTextLabel?.frame = CGRect(x: 66, y: detailTextLabel!.frame.origin.y + 2, width: detailTextLabel!.frame.width, height: detailTextLabel!.frame.height)
     }
     
+    private func setupNameAndAvatar() {
+        
+        let chatPartnerId: String?
+        
+        if message?.fromId == FIRAuth.auth()?.currentUser?.uid {
+            chatPartnerId = message?.toId
+        } else {
+            chatPartnerId = message?.fromId
+        }
+        
+        if let id = chatPartnerId {
+            let ref = FIRDatabase.database().reference().child("users").child(id)
+            ref.observe(.value, with: { (snapshot) in
+                
+                if let dictionary = snapshot.value as? [String: AnyObject] {
+                    
+                    self.textLabel?.text = dictionary["name"] as! String?
+                    
+                    if let profileImageUrl = dictionary["profileImageUrl"] as? String {
+                        self.profileImageView.loadImageUsingCache(withUrlString: profileImageUrl)
+                    }
+                }
+                
+            }, withCancel: nil)
+        }
+    }
+    
     let profileImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.image = UIImage(named: "nedstark")
@@ -62,7 +76,6 @@ class UserCell: UITableViewCell {
     
     let timeLabel: UILabel = {
         let label = UILabel()
-        label.text = "HH:MM:SS"
         label.font = UIFont.systemFont(ofSize: 12)
         label.textColor = UIColor.lightGray
         label.translatesAutoresizingMaskIntoConstraints = false

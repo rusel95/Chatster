@@ -10,7 +10,7 @@ import UIKit
 import Firebase
 
 class MessagesController: UITableViewController {
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -20,6 +20,42 @@ class MessagesController: UITableViewController {
         navigationItem.rightBarButtonItem = UIBarButtonItem(image: #imageLiteral(resourceName: "new_message_icon"), style: .plain, target: self, action: #selector(handleNewMessage))
         
         checkIfUserIsLoggedIn()
+        
+        observeMassages()
+    }
+    
+    var messages = [Message]()
+    
+    func observeMassages() {
+        let ref = FIRDatabase.database().reference().child("messages")
+        ref.observe(.childAdded, with: { (snapshot) in
+            
+            if let dictionary = snapshot.value as? [String: AnyObject] {
+                let message = Message()
+                message.setValuesForKeys(dictionary)
+                self.messages.append(message)
+                
+                //this will crash because of backgroud thread, so lets call dispatch async main thread
+                DispatchQueue.main.async {
+                    self.tableView.reloadData()
+                }
+                
+            }
+            
+        }, withCancel: nil)
+    }
+    
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return messages.count
+    }
+    
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = UITableViewCell(style: .subtitle, reuseIdentifier: "cellId")
+        
+        cell.textLabel?.text = messages[indexPath.row].toId
+        cell.detailTextLabel?.text = messages[indexPath.row].text
+        
+        return cell
     }
     
     func checkIfUserIsLoggedIn() {
@@ -91,20 +127,22 @@ class MessagesController: UITableViewController {
         
         self.navigationItem.titleView = titleView
         
-        titleView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(showChatController) ) )
+        //titleView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(showChatControllerForUser(user:)) ) )
     }
     
-    func showChatController() {
+    func showChatControllerForUser(user: User) {
         let chatLogController = ChatLogController(collectionViewLayout: UICollectionViewFlowLayout())
+        chatLogController.user = user
         navigationController?.pushViewController(chatLogController, animated: true)
     }
     
     func handleNewMessage() {
         let newMessageController = NewMessageViewController()
+        newMessageController.messagesController = self
         let navController = UINavigationController(rootViewController: newMessageController)
         present(navController, animated: true, completion: nil)
     }
-
+    
     func handleLogout() {
         
         do {
@@ -118,6 +156,6 @@ class MessagesController: UITableViewController {
         
         present(loginController, animated: true, completion: nil)
     }
-
+    
 }
 

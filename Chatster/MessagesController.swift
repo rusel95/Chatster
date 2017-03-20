@@ -27,6 +27,7 @@ class MessagesController: UITableViewController {
     }
     
     var messages = [Message]()
+    var messagesDictionary = [String: Message]()
     
     func observeMassages() {
         let ref = FIRDatabase.database().reference().child("messages")
@@ -37,7 +38,15 @@ class MessagesController: UITableViewController {
                 message.setValuesForKeys(dictionary)
                 self.messages.append(message)
                 
-                //this will crash because of backgroud thread, so lets call dispatch async main thread
+                if let toId = message.toId {
+                    self.messagesDictionary[toId] = message
+                    
+                    self.messages = Array(self.messagesDictionary.values)
+                    self.messages.sort(by: { (message1, message2) -> Bool in
+                        return (message1.timestamp?.intValue)! > (message2.timestamp?.intValue)!
+                    })
+                }
+                
                 DispatchQueue.main.async {
                     self.tableView.reloadData()
                 }

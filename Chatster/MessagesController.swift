@@ -86,6 +86,23 @@ class MessagesController: UITableViewController {
         return 72
     }
     
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
+        let message = messages[indexPath.row]
+        print(message.text!, message.toId!, message.fromId!)
+        
+        guard let chatPartnerId = message.chatPartnerId() else {
+            return
+        }
+        let ref = FIRDatabase.database().reference().child("users").child(chatPartnerId)
+        
+        ref.observe(.value, with: { (snapshot) in
+            print(snapshot)
+        }, withCancel: nil)
+        
+//        showChatControllerForUser(user: User)
+    }
+    
     func checkIfUserIsLoggedIn() {
         if FIRAuth.auth()?.currentUser?.uid == nil {
             perform(#selector(handleLogout), with: nil, afterDelay: 0)

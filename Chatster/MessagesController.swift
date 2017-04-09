@@ -9,6 +9,9 @@
 import UIKit
 import Firebase
 
+var messages = [Message]()
+var messagesDictionary = [String: Message]()
+
 class MessagesController: UITableViewController {
     
     override func viewDidLoad() {
@@ -25,8 +28,7 @@ class MessagesController: UITableViewController {
 
     }
     
-    var messages = [Message]()
-    var messagesDictionary = [String: Message]()
+ 
     
     func observeUserMessages() {
         //to get id of current user
@@ -97,10 +99,17 @@ class MessagesController: UITableViewController {
         let ref = FIRDatabase.database().reference().child("users").child(chatPartnerId)
         
         ref.observe(.value, with: { (snapshot) in
-            print(snapshot)
+            
+            guard let dictionary = snapshot.value as? [String: AnyObject] else {
+                return
+            }
+            
+            let user = User()
+            user.id = chatPartnerId
+            user.setValuesForKeys(dictionary)
+            self.showChatControllerForUser(user: user)
+            
         }, withCancel: nil)
-        
-//        showChatControllerForUser(user: User)
     }
     
     func checkIfUserIsLoggedIn() {

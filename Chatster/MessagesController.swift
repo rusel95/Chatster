@@ -48,13 +48,13 @@ class MessagesController: UITableViewController {
                 if let dictionary = snapshot.value as? [String: AnyObject] {
                     let message = Message()
                     message.setValuesForKeys(dictionary)
-                    self.messages.append(message)
+                    messages.append(message)
                     
                     if let toId = message.toId {
-                        self.messagesDictionary[toId] = message
+                        messagesDictionary[toId] = message
                         
-                        self.messages = Array(self.messagesDictionary.values)
-                        self.messages.sort(by: { (message1, message2) -> Bool in
+                        messages = Array(messagesDictionary.values)
+                        messages.sort(by: { (message1, message2) -> Bool in
                             return (message1.timestamp?.intValue)! > (message2.timestamp?.intValue)!
                         })
                     }

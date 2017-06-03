@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		8417B5E81E70041B00321CA7 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8417B5E71E70041B00321CA7 /* AppDelegate.swift */; };
 		8417B5EA1E70041B00321CA7 /* MessagesController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8417B5E91E70041B00321CA7 /* MessagesController.swift */; };
-		8417B5ED1E70041B00321CA7 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8417B5EB1E70041B00321CA7 /* Main.storyboard */; };
 		8417B5EF1E70041B00321CA7 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8417B5EE1E70041B00321CA7 /* Assets.xcassets */; };
 		8417B5F21E70041B00321CA7 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8417B5F01E70041B00321CA7 /* LaunchScreen.storyboard */; };
 		8417B5FB1E7006F200321CA7 /* LoginController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8417B5FA1E7006F200321CA7 /* LoginController.swift */; };
@@ -31,7 +30,6 @@
 		8417B5E41E70041B00321CA7 /* Chatster.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Chatster.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8417B5E71E70041B00321CA7 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		8417B5E91E70041B00321CA7 /* MessagesController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessagesController.swift; sourceTree = "<group>"; };
-		8417B5EC1E70041B00321CA7 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		8417B5EE1E70041B00321CA7 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		8417B5F11E70041B00321CA7 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		8417B5F31E70041B00321CA7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -87,16 +85,11 @@
 		8417B5E61E70041B00321CA7 /* Chatster */ = {
 			isa = PBXGroup;
 			children = (
+				8417B5E71E70041B00321CA7 /* AppDelegate.swift */,
 				843F2BCD1E7FBB870023F63A /* View */,
-				84EED9971E73E6A100C69A1E /* Helpers */,
 				84FEAE241E72EA5F00A5929F /* Model */,
 				8417B5F91E7006D900321CA7 /* Controller */,
-				8417B5E71E70041B00321CA7 /* AppDelegate.swift */,
-				8417B5EB1E70041B00321CA7 /* Main.storyboard */,
-				8417B5EE1E70041B00321CA7 /* Assets.xcassets */,
-				8417B5F01E70041B00321CA7 /* LaunchScreen.storyboard */,
-				8417B5F31E70041B00321CA7 /* Info.plist */,
-				8417B5FC1E70541E00321CA7 /* GoogleService-Info.plist */,
+				84EED9971E73E6A100C69A1E /* Helpers */,
 			);
 			path = Chatster;
 			sourceTree = "<group>";
@@ -125,6 +118,10 @@
 			isa = PBXGroup;
 			children = (
 				84EED9981E73E6B200C69A1E /* Extensions.swift */,
+				8417B5EE1E70041B00321CA7 /* Assets.xcassets */,
+				8417B5F01E70041B00321CA7 /* LaunchScreen.storyboard */,
+				8417B5F31E70041B00321CA7 /* Info.plist */,
+				8417B5FC1E70541E00321CA7 /* GoogleService-Info.plist */,
 			);
 			name = Helpers;
 			sourceTree = "<group>";
@@ -213,7 +210,6 @@
 				8417B5F21E70041B00321CA7 /* LaunchScreen.storyboard in Resources */,
 				8417B5FD1E70541E00321CA7 /* GoogleService-Info.plist in Resources */,
 				8417B5EF1E70041B00321CA7 /* Assets.xcassets in Resources */,
-				8417B5ED1E70041B00321CA7 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -288,14 +284,6 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
-		8417B5EB1E70041B00321CA7 /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				8417B5EC1E70041B00321CA7 /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
 		8417B5F01E70041B00321CA7 /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
